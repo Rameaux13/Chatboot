@@ -1,0 +1,58 @@
+Description du code java script
+
+1- Récupérer les éléments HTML de la page: document.getElementById();
+
+2- utilisation  d une cle d' api par gemini:const apiKey
+
+3-Message de bienvenue : 
+addMessageToChatbox: permet d ajoutez du titre au block concerne
+
+
+4-solution pour resoudre les etoile du bot:
+	-utilisation d une fonction:formatBotResponse
+	-$1: recupere et change
+	-replace: strong,em,br
+
+5- pour faite une difference entre le bot et l' utilisateur:
+	-Creation d' une fonction: addMessageToChatbox
+	-creation d'un div en HTML:document.createElement
+	-Permet de stylise mon css :  messageElement.classList.add
+	-permet de  préparer le message avant de l'afficher :  const formattedMessage
+	-ajout du HTML :soit vous et bot en gras
+	-ajout du nouveau message dans le chatbox :  chatbox.appendChild
+	-Pouvoir faire défilez le message sur le chatbox :scrollTop et scrollHeight
+ 
+6-Fonction pour envoyer un message:
+	-verifie si le texte est vide et retourne la reponse : if (!userMessage) return
+	-Effacer immédiatement le champ de saisie :  userInput.value = ''
+	- Afficher le message de l'utilisateur : addMessageToChatbox
+	- Désactiver le bouton et le champ :  toggleInputs
+	- permet de faire une requete a l'API: fetchGeminiResponse
+
+7- Temps de reponse:
+
+	-pour mettre du temps :fonction (handleDelayedResponse)
+        -setTimeout: attendre 1 seconde avant d excucute les instruction
+			(affichage de la reponse du bot et activation des bouton)
+			
+8- Contrôle l etat des bouton:
+	active et desactive : fonction( toggleInputs)
+	active ou desactive :disabled (bouton ou champ de saisie)
+        change le texte du bouton : textContent
+        pour que l utilisateur puisse saisie :focus()
+
+9- utilisation du bouton ou de  la touche entré :
+          ecouteur d evenement : addEventListener (clik ,keypress)
+	  ajout d une fonction e :
+
+10-Fonction pour récupérer la réponse de l'API Gemini
+   - Permet  d avoir une reponse de l API : function fetchGeminiResponse(userMessage)
+   -permet de faire le lien entre mon projet et la cle d api :const apiUrl
+   - creation d un tableau qui vas envoyez les element a ce que notre bot peut faire a l ia et repondre par user message
+  -  Envoie une requête HTTP à l'URL de l'API:apiUrl
+  - precision sur la requete envoye : post
+  - Indique que les données envoyées sont au format JSON 
+  -Convertit l'objet requestBody en chaîne JSON et l'envoie dans la requête :stringify
+  - Convertit la réponse en format JSON : them(capture la reponse)
+  -
+	
