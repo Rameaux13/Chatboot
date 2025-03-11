@@ -103,4 +103,24 @@ function fetchGeminiResponse(userMessage) {
             handleDelayedResponse('Le chatbot ne peut pas répondre pour le moment.'); // Gérer les erreurs
         });
 }
+document.addEventListener('DOMContentLoaded', function() {
+    const chatbox = document.getElementById('chatbox');
+    
+    // Fonction pour défiler vers le bas
+    function scrollToBottom() {
+        chatbox.scrollTop = chatbox.scrollHeight;
+    }
+    
+    // Observer pour détecter les nouveaux messages
+    const observer = new MutationObserver(scrollToBottom);
+    
+    // Configuration de l'observer
+    observer.observe(chatbox, {
+        childList: true,
+        subtree: true
+    });
+    
+    // Défiler vers le bas au chargement initial
+    scrollToBottom();
+});
 
