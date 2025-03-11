@@ -73,9 +73,16 @@ body {
     background-color: #34495e;
     display: flex;
     flex-direction: column;
-    /* Ajout pour assurer un bon défilement */
+    /* Améliorations pour le défilement */
     scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch; /* Pour améliorer le défilement sur iOS */
+    -webkit-overflow-scrolling: touch;
+    /* Ajout pour préserver l'historique du chat */
+    scroll-snap-type: y proximity;
+}
+
+/* Assurer que les nouveaux messages sont toujours visibles */
+#chatbox > :last-child {
+    scroll-snap-align: end;
 }
 
 #userInput {
@@ -83,10 +90,10 @@ body {
     padding: 15px;
     border-radius: 25px;
     border: 1px solid #546e7a;
-    font-size: 16px;
+    font-size: 17px; /* Texte plus grand */
     background-color: #ecf0f1;
-    width: 100%; /* S'assurer que l'input prend toute la largeur */
-    box-sizing: border-box; /* Pour éviter les débordements */
+    width: 100%;
+    box-sizing: border-box;
 }
 
 #sendButton {
@@ -98,8 +105,8 @@ body {
     cursor: pointer;
     font-weight: 600;
     transition: background-color 0.3s;
-    font-size: 16px;
-    width: 100%; /* Bouton pleine largeur sur mobile */
+    font-size: 17px; /* Texte plus grand */
+    width: 100%;
 }
 
 #sendButton:hover {
@@ -111,18 +118,19 @@ body {
     cursor: not-allowed;
 }
 
-/* Style des messages - corrigés pour affichage mobile */
+/* Style des messages - texte agrandi */
 .bot, .you {
-    margin-bottom: 20px;
-    padding: 15px 18px;
+    margin-bottom: 25px; /* Plus d'espace entre les messages */
+    padding: 16px 20px;
     border-radius: 15px;
     max-width: 85%;
     position: relative;
     line-height: 1.6;
-    font-size: 15px;
-    /* Important pour l'alignement correct */
+    font-size: 17px; /* Texte plus grand */
     align-self: flex-start;
-    word-wrap: break-word; /* Empêche les mots longs de déborder */
+    word-wrap: break-word;
+    /* Ombre légère pour meilleure lisibilité */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .bot {
@@ -137,7 +145,7 @@ body {
     background-color: #3498db;
     color: white;
     border-bottom-right-radius: 5px;
-    align-self: flex-end !important; /* Force l'alignement à droite */
+    align-self: flex-end !important;
     margin-left: auto;
     border-right: 4px solid #2980b9;
     text-align: right;
@@ -154,7 +162,7 @@ body {
     animation: pulse 1.5s infinite;
 }
 
-/* Media queries pour la responsivité - améliorées */
+/* Media queries pour la responsivité - améliorées pour texte plus grand */
 @media screen and (max-width: 1100px) {
     .main-container {
         flex-direction: column;
@@ -163,12 +171,12 @@ body {
     }
     
     .image-container {
-        height: 250px;
-        flex: none; /* Empêche l'image de prendre trop de place */
+        height: 220px;
+        flex: none;
     }
     
     .chatbot-container {
-        flex: 1; /* Le chatbot prend l'espace restant */
+        flex: 1;
     }
 }
 
@@ -179,7 +187,7 @@ body {
     }
     
     .image-container {
-        height: 180px; /* Réduit encore la hauteur de l'image */
+        height: 180px;
     }
     
     .image-container h1 {
@@ -188,15 +196,19 @@ body {
     }
     
     .chatbot-container h1 {
-        font-size: 1.6rem;
+        font-size: 1.7rem; /* Légèrement plus grand */
         margin-bottom: 15px;
         padding-bottom: 8px;
     }
     
     .bot, .you {
         max-width: 90%;
-        font-size: 14px;
-        padding: 12px 15px;
+        font-size: 16px; /* Plus grand que précédemment */
+        padding: 14px 16px;
+    }
+    
+    #userInput, #sendButton {
+        font-size: 16px;
     }
 }
 
@@ -212,7 +224,7 @@ body {
     }
     
     .image-container {
-        height: 140px; /* Encore plus petit sur téléphone */
+        height: 130px; /* Réduit pour donner plus de place au chat */
         padding: 15px;
     }
     
@@ -222,37 +234,37 @@ body {
     }
     
     .chatbot-container {
-        padding: 10px;
+        padding: 12px;
     }
     
     #chatbox {
         padding: 15px;
-        margin-bottom: 10px;
+        margin-bottom: 12px;
     }
     
     #userInput {
         padding: 12px;
-        font-size: 14px;
+        font-size: 15px; /* Plus grand sur mobile */
         margin-bottom: 10px;
     }
     
     #sendButton {
         padding: 10px 20px;
-        font-size: 14px;
+        font-size: 15px; /* Plus grand sur mobile */
     }
     
     .bot, .you {
-        max-width: 95%; /* Plus de place pour les messages sur petit écran */
-        font-size: 13px;
-        padding: 10px 12px;
-        margin-bottom: 15px;
+        max-width: 95%;
+        font-size: 15px; /* Plus grand sur mobile */
+        padding: 12px 14px;
+        margin-bottom: 18px;
     }
 }
 
 /* Ajout d'un support pour les très petits écrans */
 @media screen and (max-width: 360px) {
     .image-container {
-        height: 120px;
+        height: 110px;
     }
     
     .image-container h1 {
@@ -260,6 +272,11 @@ body {
     }
     
     .chatbot-container h1 {
-        font-size: 1.4rem;
+        font-size: 1.5rem;
+    }
+    
+    .bot, .you {
+        font-size: 14px; /* Légèrement plus petit pour les très petits écrans */
+        padding: 11px 13px;
     }
 }
